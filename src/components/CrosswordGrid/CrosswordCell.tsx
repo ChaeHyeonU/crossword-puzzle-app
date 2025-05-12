@@ -66,12 +66,15 @@ export const CrosswordCell: React.FC<CrosswordCellProps> = ({
           style={{ 
             width: `${cellSize}px`, 
             height: `${cellSize}px`,
-            borderColor: isSelected ? '#618DE5' : isFocused ? '#4CAF50' : 'transparent',
-            borderWidth: (isSelected || isFocused) ? '2px' : '0px',
           }}
           className={`flex items-center justify-center font-bold ${fontSize}
             bg-white dark:bg-slate-800 text-gray-900 dark:text-white
-            text-center outline-none`}
+            text-center outline-none
+            border
+            ${isSelected ? 'border-blue-400' : isFocused ? 'border-green-500' : 'border-slate-300'}
+            dark:border-slate-700
+            ${(isSelected || isFocused) ? 'border-2' : 'border'}
+            transition-colors duration-150`}
           lang="ko"
         />
       )}

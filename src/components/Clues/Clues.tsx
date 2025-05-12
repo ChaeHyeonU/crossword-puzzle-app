@@ -59,7 +59,7 @@ const Clues: React.FC<CluesProps> = ({ clues, onClueSelect }) => {
   const processedClues = processClues(clues);
 
   return (
-    <div className="p-4 overflow-y-auto h-full bg-inherit text-inherit">
+    <div className="p-4 overflow-y-auto scrollbar-hide h-full bg-inherit text-inherit">
       <ul className="space-y-3">
         {processedClues.map((clue) => (
           <ClueItem

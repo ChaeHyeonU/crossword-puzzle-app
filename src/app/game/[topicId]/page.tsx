@@ -147,10 +147,12 @@ export default function GamePage({ params }: { params: Promise<{ topicId: string
         </div>
         {/* 하단 문제 영역 (스크롤바 숨김) */}
         <div className="w-full h-[46vh] bg-slate-50 dark:bg-slate-900 flex flex-col overflow-hidden">
-          <Clues
-            clues={sampleClues}
-            onClueSelect={handleClueSelect}
-          />
+          <div className="flex-1 overflow-y-auto scrollbar-hide">
+            <Clues
+              clues={sampleClues}
+              onClueSelect={handleClueSelect}
+            />
+          </div>
         </div>
         {/* 설정 모달 */}
         <SettingsModal
