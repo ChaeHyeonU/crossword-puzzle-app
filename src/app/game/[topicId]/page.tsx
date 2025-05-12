@@ -86,12 +86,12 @@ export default function GamePage({ params }: { params: Promise<{ topicId: string
 
   return (
     <SettingsProvider>
-      <div className="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-slate-900 dark:text-slate-100">
+      <div className="h-screen flex flex-col items-center justify-start bg-gradient-to-b from-blue-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100 px-2">
         {/* 상단 헤더 */}
-        <header className="w-full h-[8vh] bg-slate-100 dark:bg-slate-800 flex items-center justify-between px-4 border-b border-slate-200 dark:border-slate-700">
+        <header className="w-full max-w-2xl mx-auto h-14 bg-white/80 dark:bg-slate-800 rounded-xl shadow flex items-center justify-center border border-slate-200 dark:border-slate-700 mb-2 relative">
           <button
             onClick={() => window.history.back()}
-            className="flex items-center justify-center text-slate-500 hover:text-gray-900 dark:text-slate-400 dark:hover:text-slate-100"
+            className="absolute left-4 flex items-center justify-center text-slate-500 hover:text-gray-900 dark:text-slate-400 dark:hover:text-slate-100"
             aria-label="뒤로가기"
           >
             <svg
@@ -105,10 +105,13 @@ export default function GamePage({ params }: { params: Promise<{ topicId: string
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
-          <h1 className="text-xl font-bold">크로스워드 퍼즐</h1>
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🌍</span>
+            <span className="text-lg font-bold">지리 크로스워드</span>
+          </div>
           <button
             onClick={() => setIsSettingsOpen(true)}
-            className="flex items-center justify-center text-slate-500 hover:text-gray-900 dark:text-slate-400 dark:hover:text-slate-100"
+            className="absolute right-4 flex items-center justify-center text-slate-500 hover:text-gray-900 dark:text-slate-400 dark:hover:text-slate-100"
             aria-label="설정"
           >
             <svg
@@ -134,8 +137,8 @@ export default function GamePage({ params }: { params: Promise<{ topicId: string
         </header>
 
         {/* 상단 퍼즐 영역 */}
-        <div ref={gridContainerRef} className="w-full h-[46vh] overflow-hidden bg-white text-gray-900 dark:bg-slate-900 dark:text-slate-100 flex items-center justify-center">
-          <div className="w-full h-full flex items-center justify-center touch-pan-x touch-pan-y">
+        <div ref={gridContainerRef} className="w-full max-w-2xl flex-1 flex items-center justify-center mb-2" style={{ minHeight: '0' }}>
+          <div className="w-full h-full bg-white/90 dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center touch-pan-x touch-pan-y" style={{ minHeight: '0' }}>
             <CrosswordGrid
               size={GRID_SIZE}
               puzzle={samplePuzzle}
@@ -146,12 +149,15 @@ export default function GamePage({ params }: { params: Promise<{ topicId: string
           </div>
         </div>
         {/* 하단 문제 영역 (스크롤바 숨김) */}
-        <div className="w-full h-[46vh] bg-slate-50 dark:bg-slate-900 flex flex-col overflow-hidden">
-          <div className="flex-1 overflow-y-auto scrollbar-hide">
-            <Clues
-              clues={sampleClues}
-              onClueSelect={handleClueSelect}
-            />
+        <div className="w-full max-w-2xl flex-[1.1] flex flex-col items-center" style={{ minHeight: '0' }}>
+          <div className="w-full h-full bg-white/90 dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden" style={{ minHeight: '0' }}>
+            <div className="px-6 pt-4 pb-2 text-sm text-slate-500 dark:text-slate-300 font-medium">문제를 클릭하면 정답 입력창이 열립니다.</div>
+            <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pb-4" style={{ minHeight: '0' }}>
+              <Clues
+                clues={sampleClues}
+                onClueSelect={handleClueSelect}
+              />
+            </div>
           </div>
         </div>
         {/* 설정 모달 */}
