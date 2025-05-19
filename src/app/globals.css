@@ -91,13 +91,29 @@
   }
 }
 
-/* 스크롤바 숨김 유틸리티 */
+/* landscape-flex-row: 가로 모드에서 flex-row, 세로 모드에서 flex-col */
+@media (orientation: landscape) {
+  .landscape-flex-row {
+    flex-direction: row !important;
+  }
+  .landscape-flex-row > * {
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+}
+@media (orientation: portrait) {
+  .landscape-flex-row {
+    flex-direction: column !important;
+  }
+}
+
+/* 스크롤바 숨김 */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
 }
 .scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none; /* Chrome/Safari/Webkit */
 }
 
 /* 전체 페이지 스크롤바 완전 숨김 */
@@ -107,11 +123,4 @@ html, body {
 }
 html::-webkit-scrollbar, body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
-}
-
-/* 가로모드(landscape)에서 flex-row로 동작 */
-@media (orientation: landscape) {
-  .landscape-flex-row {
-    flex-direction: row !important;
-  }
 }

@@ -103,7 +103,7 @@ export const samplePuzzle: PuzzleData = {
     '17-down': { answer: '악학궤범', direction: 'down', length: 4 },
     '18': { answer: '기온', direction: 'across', length: 2 },
     '19': { answer: '온대기후', direction: 'across', length: 4 },
-    '20': { answer: '누진세', direction: 'across', length: 3 },
+    '20': { answer: '누진', direction: 'across', length: 2 },
     '21-down': { answer: '본초자오선', direction: 'down', length: 5 },
     '22': { answer: '대륙법', direction: 'across', length: 3 },
     '23': { answer: '의궤', direction: 'across', length: 2 },
