@@ -9,7 +9,6 @@ import type { PuzzleClue } from "@/types/puzzle";
 import AnswerModal from "@/components/AnswerModal/AnswerModal";
 import SettingsModal from "@/components/Settings/SettingsModal";
 import { SettingsProvider } from "@/contexts/SettingsContext";
-import Textfit from "react-textfit";
 
 const CrosswordGrid = dynamic(() => import('@/components/CrosswordGrid/CrosswordGrid'), { ssr: false });
 const Clues = dynamic(() => import('@/components/Clues/Clues'), { ssr: false });
@@ -124,9 +123,7 @@ export default function GamePage({ params }: { params: Promise<{ topicId: string
           </button>
           <div className="flex items-center gap-2">
             <span className="text-2xl">🌍</span>
-            <Textfit mode="single" min={16} max={28} className="font-bold leading-tight text-lg" style={{width: '160px'}}>
-              지리 크로스워드
-            </Textfit>
+            <span className="text-lg font-bold">지리 크로스워드</span>
           </div>
           <button
             onClick={() => setIsSettingsOpen(true)}
@@ -178,9 +175,7 @@ export default function GamePage({ params }: { params: Promise<{ topicId: string
           <div className="w-full h-1/2 landscape-flex-row:w-1/2 landscape-flex-row:h-full flex flex-col min-h-0 min-w-0 flex-1 overflow-hidden" aria-label="문제 영역">
             <div className="w-full h-full bg-white/90 dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden min-h-0 min-w-0">
               <div className="px-6 pt-4 pb-2 text-sm text-slate-500 dark:text-slate-300 font-medium">
-                <Textfit mode="single" min={12} max={16} className="w-full">
-                  문제를 클릭하면 정답 입력창이 열립니다.
-                </Textfit>
+                문제를 클릭하면 정답 입력창이 열립니다.
               </div>
               <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pb-4 min-h-0 min-w-0">
                 <Clues

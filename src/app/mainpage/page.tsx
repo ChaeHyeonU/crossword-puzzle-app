@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import SettingsModal from "@/components/Settings/SettingsModal";
 import { SettingsProvider } from "@/contexts/SettingsContext";
-import { Textfit } from 'react-textfit';
 
 // 부제목(Section) 데이터 구조
 interface Section {
@@ -106,17 +105,13 @@ export default function GameMainPage() {
                 ◀
               </Button>
               <div className="flex-1 min-w-0 flex items-center justify-center">
-                <Textfit
-                  mode="single"
-                  min={14}
-                  max={24}
-                  className="w-full min-w-0 text-xl font-bold flex items-center justify-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap"
+                <span className="text-2xl font-bold flex items-center justify-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap"
                   style={{ lineHeight: 1.2 }}
                 >
                   <span className="text-2xl">{section.icon}</span>
                   <span className="mr-2 text-2xl font-extrabold">{section.id}.</span>
                   {section.title}
-                </Textfit>
+                </span>
               </div>
               <Button variant="ghost" onClick={handleNext} disabled={current === sections.length - 1} aria-label="다음 부제목으로">
                 ▶

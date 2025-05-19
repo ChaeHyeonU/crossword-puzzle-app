@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { PuzzleClue } from '@/types/puzzle';
-import Textfit from 'react-textfit';
 
 interface CluesProps {
   readonly clues: Readonly<Record<string, string>>;
@@ -52,9 +51,7 @@ const ClueItem: React.FC<{
     <span className="text-primary font-semibold whitespace-nowrap text-sm">
       {clue.number}.{clue.direction ? ` (${clue.direction})` : ''}
     </span>
-    <Textfit mode="single" min={12} max={16} className="text-muted-foreground text-sm leading-5 pl-1" style={{width: '100%'}}>
-      {clue.clue}
-    </Textfit>
+    <span className="text-muted-foreground text-sm leading-5 pl-1">{clue.clue}</span>
   </li>
 );
 
