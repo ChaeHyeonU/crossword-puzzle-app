@@ -108,3 +108,10 @@ html, body {
 html::-webkit-scrollbar, body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+
+/* 가로모드(landscape)에서 flex-row로 동작 */
+@media (orientation: landscape) {
+  .landscape-flex-row {
+    flex-direction: row !important;
+  }
+}

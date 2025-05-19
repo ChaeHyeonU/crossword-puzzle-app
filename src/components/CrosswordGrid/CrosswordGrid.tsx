@@ -39,9 +39,18 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
   // 셀 크기 업데이트
   useEffect(() => {
     const updateCellSize = () => {
-      const screenWidth = window.innerWidth;
-      const screenHeight = window.innerHeight * 0.45;
-      setCellSize(calculateCellSize(size, screenWidth, screenHeight));
+      const isLandscape = window.innerWidth > window.innerHeight;
+      let gridWidth, gridHeight;
+      if (isLandscape) {
+        // 가로모드: 화면의 절반 너비, 전체 높이 사용
+        gridWidth = window.innerWidth * 0.5 * 0.95; // 좌우 여백 고려
+        gridHeight = window.innerHeight * 0.85; // 헤더 등 여백 고려
+      } else {
+        // 세로모드: 전체 너비, 절반 높이 사용
+        gridWidth = window.innerWidth * 0.95;
+        gridHeight = window.innerHeight * 0.45;
+      }
+      setCellSize(calculateCellSize(size, gridWidth, gridHeight));
     };
 
     updateCellSize();
@@ -49,24 +58,10 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
     return () => window.removeEventListener('resize', updateCellSize);
   }, [size]);
 
-  // 선택된 문제로 자동 줌인
+  // 선택된 문제로 자동 확대/이동 기능 제거: 항상 기본 스케일과 위치 유지
   useEffect(() => {
-    if (selectedClue) {
-      setScale(1.5);
-      const cells = getSelectedCells(selectedClue, puzzle, size);
-      if (cells.length > 0) {
-        const centerX = cells.reduce((sum, cell) => sum + cell.x, 0) / cells.length;
-        const centerY = cells.reduce((sum, cell) => sum + cell.y, 0) / cells.length;
-        
-        const offsetX = (centerX - size / 2) * cellSize;
-        const offsetY = (centerY - size / 2) * cellSize;
-        
-        setPosition({ x: -offsetX, y: -offsetY });
-      }
-    } else {
-      setScale(MIN_SCALE);
-      setPosition({ x: 0, y: 0 });
-    }
+    setScale(MIN_SCALE);
+    setPosition({ x: 0, y: 0 });
   }, [selectedClue, size, cellSize, puzzle, setScale, setPosition]);
 
   const handleCellClick = (row: number, col: number) => {

@@ -86,9 +86,9 @@ export default function GamePage({ params }: { params: Promise<{ topicId: string
 
   return (
     <SettingsProvider>
-      <div className="h-screen flex flex-col items-center justify-start bg-gradient-to-b from-blue-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100 px-2">
-        {/* 상단 헤더 */}
-        <header className="w-full max-w-2xl mx-auto h-14 bg-white/80 dark:bg-slate-800 rounded-xl shadow flex items-center justify-center border border-slate-200 dark:border-slate-700 mb-2 relative">
+      <div className="h-screen flex flex-col bg-gradient-to-b from-blue-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100 px-2">
+        {/* 상단 헤더 (항상 상단 고정) */}
+        <header className="w-full max-w-2xl mx-auto h-14 bg-white/80 dark:bg-slate-800 rounded-xl shadow flex items-center justify-center border border-slate-200 dark:border-slate-700 mt-2 mb-2 relative">
           <button
             onClick={() => window.history.back()}
             className="absolute left-4 flex items-center justify-center text-slate-500 hover:text-gray-900 dark:text-slate-400 dark:hover:text-slate-100"
@@ -136,27 +136,34 @@ export default function GamePage({ params }: { params: Promise<{ topicId: string
           </button>
         </header>
 
-        {/* 상단 퍼즐 영역 */}
-        <div ref={gridContainerRef} className="w-full max-w-2xl flex-1 flex items-center justify-center mb-2" style={{ minHeight: '0' }}>
-          <div className="w-full h-full bg-white/90 dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center touch-pan-x touch-pan-y" style={{ minHeight: '0' }}>
-            <CrosswordGrid
-              size={GRID_SIZE}
-              puzzle={samplePuzzle}
-              selectedClue={state.selectedClue}
-              userInput={state.userInput}
-              onInput={handleInput}
-            />
-          </div>
-        </div>
-        {/* 하단 문제 영역 (스크롤바 숨김) */}
-        <div className="w-full max-w-2xl flex-[1.1] flex flex-col items-center" style={{ minHeight: '0' }}>
-          <div className="w-full h-full bg-white/90 dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden" style={{ minHeight: '0' }}>
-            <div className="px-6 pt-4 pb-2 text-sm text-slate-500 dark:text-slate-300 font-medium">문제를 클릭하면 정답 입력창이 열립니다.</div>
-            <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pb-4" style={{ minHeight: '0' }}>
-              <Clues
-                clues={sampleClues}
-                onClueSelect={handleClueSelect}
+        <div className="flex-1 flex flex-col landscape-flex-row gap-4 w-full max-w-7xl mx-auto h-full min-h-0 min-w-0">
+          {/* 퍼즐 영역 */}
+          <div
+            ref={gridContainerRef}
+            className="w-full h-1/2 landscape-flex-row:w-1/2 landscape-flex-row:h-full flex items-center justify-center min-h-0 min-w-0 flex-1"
+          >
+            <div
+              className="w-full h-full bg-white/90 dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center touch-pan-x touch-pan-y min-h-0 min-w-0"
+            >
+              <CrosswordGrid
+                size={GRID_SIZE}
+                puzzle={samplePuzzle}
+                selectedClue={state.selectedClue}
+                userInput={state.userInput}
+                onInput={handleInput}
               />
+            </div>
+          </div>
+          {/* 문제 영역 */}
+          <div className="w-full h-1/2 landscape-flex-row:w-1/2 landscape-flex-row:h-full flex flex-col min-h-0 min-w-0 flex-1">
+            <div className="w-full h-full bg-white/90 dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden min-h-0 min-w-0">
+              <div className="px-6 pt-4 pb-2 text-sm text-slate-500 dark:text-slate-300 font-medium">문제를 클릭하면 정답 입력창이 열립니다.</div>
+              <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pb-4 min-h-0 min-w-0">
+                <Clues
+                  clues={sampleClues}
+                  onClueSelect={handleClueSelect}
+                />
+              </div>
             </div>
           </div>
         </div>
